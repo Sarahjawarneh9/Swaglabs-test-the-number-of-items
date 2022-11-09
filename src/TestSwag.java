@@ -10,7 +10,7 @@ import org.testng.Assert;
 public class TestSwag {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\New folder\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\New folder\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://www.saucedemo.com");
@@ -26,16 +26,25 @@ public class TestSwag {
 		driver.findElement(By.xpath("//input[@id='login-button']")).click();
 		Thread.sleep(3000);
 		
-		//add the items to card
-    	driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-    	driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
-    	driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-    	driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
-    	driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
-    	driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+//		//add the items to card
+//    	driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+//    	driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+//    	driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+//    	driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+//    	driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+//    	driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
 
-	    List <WebElement> items = driver.findElements(By.className("inventory_item"));
-	    System.out.println("The number of item that i added to card : "+ items.size());
+		
+		//add the items to card
+		 List <WebElement> addCart = driver.findElements(By.xpath("//div/button[.='Add to cart']"));
+			for(int i=0 ; i<addCart.size(); i++ ) {
+				addCart.get(i).click();
+				Thread.sleep(5000);
+			}
+		    //System.out.println("The number of item that i added to card : "+ addCart.size());
+				
+//	    List <WebElement> items = driver.findElements(By.className("inventory_item"));
+//	    System.out.println("The number of item that i added to card : "+ items.size());
 	
 	    //click on shopping cart icon then get the number of items in the card
 		Thread.sleep(3000);
@@ -43,7 +52,7 @@ public class TestSwag {
 	    Thread.sleep(3000);
 	    
 	    List <WebElement> cartItems = driver.findElements(By.xpath(" //div/div[@class='cart_item']"));
-	    System.out.println("The number of item that i have in the card : "+ cartItems.size());
+	    //System.out.println("The number of item that i have in the card : "+ cartItems.size());
 	    
 	    //get the number of items in the card
 		int actualItems= cartItems.size();
@@ -51,23 +60,6 @@ public class TestSwag {
 	    
 	    //Compare between actualItems and expectedItems
 	    Assert.assertEquals(actualItems, expectedItems);
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-//	    List <WebElement> addCart = driver.findElements(By.className(""));
-//		for(int i=0 ; i<addCart.size(); i++ ) {
-//			//driver.findElement(By.className("btn btn_primary btn_small btn_inventory")).click();
-//			addCart.get(i).;
-//			Thread.sleep(5000);
-//		}
 	}
 
 }
